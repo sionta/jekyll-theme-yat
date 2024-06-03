@@ -19,9 +19,9 @@
       return;
     }
 
-    if (headerTop == 0  && offsetY > scrollPos.y) {
+    if (headerTop == 0 && offsetY > scrollPos.y) {
       offsetY += headerHeight + 2;
-    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+    } else if (headerTop < 0 && offsetY < scrollPos.y) {
       offsetY -= headerHeight - 2;
     }
 
@@ -29,14 +29,14 @@
   }
 
   // The first event occurred
-  window.addEventListener('load', function(event) {
+  window.addEventListener('load', function (event) {
     if (window.location.hash) {
       hashLocate(window.location.hash);
     }
   });
 
   // The first event occurred
-  window.addEventListener('click', function(event) {
+  window.addEventListener('click', function (event) {
     if (event.target.tagName.toLowerCase() == 'a') {
       hashLocate(event.target.getAttribute('href'));
     }

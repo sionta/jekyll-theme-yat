@@ -1,9 +1,9 @@
 <style type="text/css" media="screen">
-.post-menu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+  .post-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
 </style>
 
 <div class="post-menu">
@@ -13,22 +13,28 @@
 
 <script>
   function generateContent() {
-    var menu = document.querySelector(".post-menu");
-    var menuContent =  menu.querySelector(".post-menu-content");
-    var headings = document.querySelector(".post-content").querySelectorAll("h2, h3, h4, h5, h6");
+    var menu = document.querySelector('.post-menu');
+    var menuContent = menu.querySelector('.post-menu-content');
+    var headings = document.querySelector('.post-content').querySelectorAll('h2, h3, h4, h5, h6');
 
     // Hide menu when no headings
     if (headings.length === 0) {
-      return menu.style.display = "none";
+      return (menu.style.display = 'none');
     }
 
     // Generate post menu
     var menuHTML = '';
     for (var i = 0; i < headings.length; i++) {
       var h = headings[i];
-      menuHTML += (
-        '<li class="h-' + h.tagName.toLowerCase() + '">'
-        + '<a href="#h-' + h.getAttribute('id') + '">' + h.textContent + '</a></li>');
+      menuHTML +=
+        '<li class="h-' +
+        h.tagName.toLowerCase() +
+        '">' +
+        '<a href="#h-' +
+        h.getAttribute('id') +
+        '">' +
+        h.textContent +
+        '</a></li>';
     }
 
     menuContent.innerHTML = '<ul>' + menuHTML + '</ul>';
@@ -48,32 +54,30 @@
       }
 
       var activeItem = items[index];
-      var beginItem = activeItem
-      var endItem = activeItem
+      var beginItem = activeItem;
+      var endItem = activeItem;
       var beginIndex = index;
       var endIndex = index + 1;
-      while (beginIndex >= 0
-        && !items[beginIndex].classList.contains('h-h2')) {
+      while (beginIndex >= 0 && !items[beginIndex].classList.contains('h-h2')) {
         beginIndex -= 1;
       }
-      while (endIndex < items.length
-        && !items[endIndex].classList.contains('h-h2')) {
+      while (endIndex < items.length && !items[endIndex].classList.contains('h-h2')) {
         endIndex += 1;
       }
       for (var i = 0; i < beginIndex; i++) {
-        item = items[i]
+        item = items[i];
         if (!item.classList.contains('h-h2')) {
           item.style.display = 'none';
         }
       }
       for (var i = beginIndex + 1; i < endIndex; i++) {
-        item = items[i]
+        item = items[i];
         // if (!item.classList.contains('h-h2')) {
-          item.style.display = '';
+        item.style.display = '';
         // }
       }
       for (var i = endIndex; i < items.length; i++) {
-        item = items[i]
+        item = items[i];
         if (!item.classList.contains('h-h2')) {
           item.style.display = 'none';
         }
@@ -97,7 +101,7 @@
         var headerHeight = headerTop + headerHeight + 20;
         if (headingRect.top <= headerHeight) {
           var id = 'h-' + h.getAttribute('id');
-          var a = menuContent.querySelector('a[href="#' + id  + '"]');
+          var a = menuContent.querySelector('a[href="#' + id + '"]');
           var curActive = a.parentNode;
           if (curActive) {
             curActive.classList.add('active');

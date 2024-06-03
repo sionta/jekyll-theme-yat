@@ -1,12 +1,9 @@
 ---
 layout: default
 ---
-
 <div class="framework">
   <section class="main">
-
-     {{ content }}
-
+    {{ content }}
   </section>
   <section class="sidebar" style="margin-left: 15px;">
     <!-- Get sidebar items -->
@@ -19,7 +16,6 @@ layout: default
     {%- endif -%}
 
     {%- for item in sidebar -%}
-
       {%- assign file = item -%}
       {%- assign array = file | split: '.' -%}
       {%- if array.size == 1 -%}
@@ -29,7 +25,6 @@ layout: default
       {%- assign file = 'sidebar/' | append: file -%}
 
       {%- include {{ file }} %}
-
     {%- endfor -%}
   </section>
 </div>

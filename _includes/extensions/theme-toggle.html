@@ -14,13 +14,11 @@
 {%- assign night_mode = return -%}
 
 <script>
-  (function() {
+  (function () {
     var sw = document.getElementById('theme-switch');
     var html = document.getElementsByTagName('html')[0];
     var nightModeOption = ('{{ night_mode }}' || 'auto').toLowerCase();
-    var storage = nightModeOption === 'manual'
-        ? localStorage
-        : sessionStorage;
+    var storage = nightModeOption === 'manual' ? localStorage : sessionStorage;
     var themeData = loadThemeData();
 
     function saveThemeData(data) {
@@ -31,7 +29,7 @@
       var data = storage.getItem('theme');
       try {
         data = JSON.parse(data ? data : '');
-      } catch(e) {
+      } catch (e) {
         data = { nightShift: undefined, autoToggleAt: 0 };
         saveThemeData(data);
       }
@@ -42,7 +40,7 @@
       themeData.nightShift = nightShift;
       saveThemeData(themeData);
       html.dataset.theme = nightShift ? 'dark' : 'light';
-      setTimeout(function() {
+      setTimeout(function () {
         sw.checked = nightShift ? true : false;
       }, 50);
     }
@@ -52,7 +50,7 @@
       var now = new Date();
       var toggleAt = new Date();
       var hours = now.getHours();
-      var nightShift = hours >= 19 || hours <=7;
+      var nightShift = hours >= 19 || hours <= 7;
 
       if (nightShift) {
         if (hours > 7) {
@@ -65,23 +63,23 @@
 
       toggleAt.setMinutes(0);
       toggleAt.setSeconds(0);
-      toggleAt.setMilliseconds(0)
+      toggleAt.setMilliseconds(0);
 
       var delay = toggleAt.getTime() - now.getTime();
 
       // auto toggle theme mode
-      setTimeout(function() {
+      setTimeout(function () {
         handleThemeToggle(!nightShift);
       }, delay);
 
       return {
         nightShift: nightShift,
-        toggleAt: toggleAt.getTime()
+        toggleAt: toggleAt.getTime(),
       };
     }
 
     // Listen the theme toggle event
-    sw.addEventListener('change', function(event) {
+    sw.addEventListener('change', function (event) {
       handleThemeToggle(event.target.checked);
     });
 

@@ -5,15 +5,13 @@
 {% if include.params.lang %}
   {% assign lang = include.params.lang %}
 {% else %}
-  {% assign lang = lang | default: site.lang | default: "en" %}
+  {% assign lang = lang | default: site.lang | default: 'en' %}
 {% endif %}
 
 {% if include.params.excerpt_size %}
   {% assign excerpt_size = include.params.excerpt_size %}
 {% else %}
-  {% assign excerpt_size = excerpt_size
-    | default: site.excerpt.text_size
-    | default: 350 %}
+  {% assign excerpt_size = excerpt_size | default: site.excerpt.text_size | default: 350 %}
 {% endif %}
 
 {%- include functions.html func='get_article_words' -%}
@@ -24,12 +22,8 @@
 
 {% assign _size = excerpt_size %}
 
-{% if lang != "en" %}
-  {% assign _size = words
-    | times: 1.0
-    | divided_by: _words
-    | times: _size
-    | round %}
+{% if lang != 'en' %}
+  {% assign _size = words | times: 1.0 | divided_by: _words | times: _size | round %}
 {% endif %}
 
 {% if _size > excerpt_size %}

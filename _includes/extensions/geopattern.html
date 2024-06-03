@@ -10,7 +10,7 @@
 <script>
   function setRandomBgImage(selector, seed) {
     var pattern = GeoPattern.generate(seed);
-    var element = document.querySelector(selector)
+    var element = document.querySelector(selector);
     if (element) {
       element.style.backgroundImage = pattern.toDataUrl();
     }
@@ -18,4 +18,3 @@
 
   setRandomBgImage('{{ selector }}', '{{ seed }}');
 </script>
-
